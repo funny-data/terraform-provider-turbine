@@ -1,4 +1,4 @@
-module github.com/hashicorp/terraform-provider-scaffolding
+module github.com/funny-data/terraform-provider-turbine
 
 go 1.17
 
