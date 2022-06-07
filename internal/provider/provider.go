@@ -46,7 +46,8 @@ func New(version string) func() *schema.Provider {
 				},
 			},
 			ResourcesMap: map[string]*schema.Resource{
-				"turbine_dummy": resourceDummy(),
+				"turbine_dummy":       resourceDummy(),
+				"turbine_kafka_topic": resourceKafkaTopic(),
 			},
 		}
 
