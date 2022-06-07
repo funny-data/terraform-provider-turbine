@@ -51,6 +51,7 @@ func New(version string) func() *schema.Provider {
 				"turbine_ingest_metadata": resourceIngestMetadata(),
 				"turbine_hudi_database":   resourceHudiDatabase(),
 				"turbine_hudi_table":      resourceHudiTable(),
+				"turbine_hudi_sink_job":   resourceHudiSinkJob(),
 				"turbine_xdconsole_sink":  resourceXDConsoleSink(),
 				"turbine_sls_sink":        resourceSLSSink(),
 			},
