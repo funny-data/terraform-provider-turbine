@@ -3,6 +3,7 @@ package provider
 import (
 	"context"
 	"encoding/json"
+	"reflect"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -44,6 +45,17 @@ func resourceIngestMetadata() *schema.Resource {
 			"spec": {
 				Type:     schema.TypeString,
 				Required: true,
+				DiffSuppressFunc: func(k, old, new string, d *schema.ResourceData) bool {
+					var oldJSON, newJSON interface{}
+					if err := json.Unmarshal([]byte(old), &oldJSON); err != nil {
+						return false
+					}
+					if err := json.Unmarshal([]byte(new), &newJSON); err != nil {
+						return false
+					}
+
+					return reflect.DeepEqual(oldJSON, newJSON)
+				},
 			},
 		},
 	}
