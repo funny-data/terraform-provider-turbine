@@ -199,8 +199,8 @@ type Resource struct {
 		Name   string            `json:"name"`
 		Labels map[string]string `json:"labels"`
 	} `json:"metadata"`
-	Kind   string                 `json:"kind"`
-	Spec   map[string]interface{} `json:"spec"`
+	Kind   string      `json:"kind"`
+	Spec   interface{} `json:"spec"`
 	Status struct {
 		State  string `json:"state"`
 		Reason string `json:"reason"`
