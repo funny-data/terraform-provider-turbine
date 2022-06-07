@@ -26,11 +26,27 @@ func init() {
 func New(version string) func() *schema.Provider {
 	return func() *schema.Provider {
 		p := &schema.Provider{
-			DataSourcesMap: map[string]*schema.Resource{
-				"scaffolding_data_source": dataSourceScaffolding(),
+			Schema: map[string]*schema.Schema{
+				"endpoint": {
+					Type:        schema.TypeString,
+					Required:    true,
+					DefaultFunc: schema.EnvDefaultFunc("TURBINE_ENDPOINT", nil),
+					Description: "Endpoint of Turbine API Server",
+				},
+				"username": {
+					Type:        schema.TypeString,
+					Optional:    true,
+					DefaultFunc: schema.EnvDefaultFunc("TURBINE_USERNAME", nil),
+				},
+				"password": {
+					Type:        schema.TypeString,
+					Sensitive:   true,
+					Optional:    true,
+					DefaultFunc: schema.EnvDefaultFunc("TURBINE_PASSWORD", nil),
+				},
 			},
 			ResourcesMap: map[string]*schema.Resource{
-				"scaffolding_resource": resourceScaffolding(),
+				"turbine_dummy": resourceDummy(),
 			},
 		}
 
@@ -40,18 +56,23 @@ func New(version string) func() *schema.Provider {
 	}
 }
 
-type apiClient struct {
-	// Add whatever fields, client or connection info, etc. here
-	// you would need to setup to communicate with the upstream
-	// API.
-}
-
 func configure(version string, p *schema.Provider) func(context.Context, *schema.ResourceData) (interface{}, diag.Diagnostics) {
-	return func(context.Context, *schema.ResourceData) (interface{}, diag.Diagnostics) {
+	return func(ctx context.Context, d *schema.ResourceData) (interface{}, diag.Diagnostics) {
 		// Setup a User-Agent for your API client (replace the provider name for yours):
-		// userAgent := p.UserAgent("terraform-provider-scaffolding", version)
-		// TODO: myClient.UserAgent = userAgent
+		userAgent := p.UserAgent("terraform-provider-turbine", version)
 
-		return &apiClient{}, nil
+		endpoint := d.Get("endpoint").(string)
+		var (
+			username string
+			password string
+		)
+		if i, ok := d.GetOk("username"); ok {
+			username = i.(string)
+		}
+		if i, ok := d.GetOk("password"); ok {
+			password = i.(string)
+		}
+
+		return newApiClient(userAgent, endpoint, username, password), nil
 	}
 }
