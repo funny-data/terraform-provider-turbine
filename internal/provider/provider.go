@@ -52,6 +52,7 @@ func New(version string) func() *schema.Provider {
 				"turbine_hudi_database":   resourceHudiDatabase(),
 				"turbine_hudi_table":      resourceHudiTable(),
 				"turbine_xdconsole_sink":  resourceXDConsoleSink(),
+				"turbine_sls_sink":        resourceSLSSink(),
 			},
 		}
 
