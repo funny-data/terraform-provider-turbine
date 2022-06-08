@@ -117,9 +117,13 @@ func resourceSLSSinkCreate(ctx context.Context, d *schema.ResourceData, meta int
 		return diag.FromErr(err)
 	}
 
-	d.Set("metadata.0.name", ret.Metadata.Name)
-	d.Set("metadata.0.labels", ret.Metadata.Labels)
-	d.Set("spec.0", ret.Spec)
+	d.Set("metadata", []interface{}{
+		map[string]interface{}{
+			"name":   ret.Metadata.Name,
+			"labels": ret.Metadata.Labels,
+		},
+	})
+	d.Set("spec", []interface{}{ret.Spec})
 
 	return nil
 }
@@ -139,9 +143,13 @@ func resourceSLSSinkRead(ctx context.Context, d *schema.ResourceData, meta inter
 		return diag.FromErr(err)
 	}
 
-	d.Set("metadata.0.name", ret.Metadata.Name)
-	d.Set("metadata.0.labels", ret.Metadata.Labels)
-	d.Set("spec.0", ret.Spec)
+	d.Set("metadata", []interface{}{
+		map[string]interface{}{
+			"name":   ret.Metadata.Name,
+			"labels": ret.Metadata.Labels,
+		},
+	})
+	d.Set("spec", []interface{}{ret.Spec})
 
 	return nil
 }
@@ -173,9 +181,13 @@ func resourceSLSSinkUpdate(ctx context.Context, d *schema.ResourceData, meta int
 		return diag.FromErr(err)
 	}
 
-	d.Set("metadata.0.name", ret.Metadata.Name)
-	d.Set("metadata.0.labels", ret.Metadata.Labels)
-	d.Set("spec.0", ret.Spec)
+	d.Set("metadata", []interface{}{
+		map[string]interface{}{
+			"name":   ret.Metadata.Name,
+			"labels": ret.Metadata.Labels,
+		},
+	})
+	d.Set("spec", []interface{}{ret.Spec})
 
 	return nil
 }

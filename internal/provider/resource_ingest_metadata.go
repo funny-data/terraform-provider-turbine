@@ -93,9 +93,13 @@ func resourceIngestMetadataCreate(ctx context.Context, d *schema.ResourceData, m
 		return diag.FromErr(err)
 	}
 
-	d.Set("metadata.0.name", ret.Metadata.Name)
-	d.Set("metadata.0.labels", ret.Metadata.Labels)
-	d.Set("spec.0", string(specBytes))
+	d.Set("metadata", []interface{}{
+		map[string]interface{}{
+			"name":   ret.Metadata.Name,
+			"labels": ret.Metadata.Labels,
+		},
+	})
+	d.Set("spec", string(specBytes))
 
 	return nil
 }
@@ -120,9 +124,13 @@ func resourceIngestMetadataRead(ctx context.Context, d *schema.ResourceData, met
 		return diag.FromErr(err)
 	}
 
-	d.Set("metadata.0.name", ret.Metadata.Name)
-	d.Set("metadata.0.labels", ret.Metadata.Labels)
-	d.Set("spec.0", string(specBytes))
+	d.Set("metadata", []interface{}{
+		map[string]interface{}{
+			"name":   ret.Metadata.Name,
+			"labels": ret.Metadata.Labels,
+		},
+	})
+	d.Set("spec", string(specBytes))
 
 	return nil
 }
@@ -159,9 +167,13 @@ func resourceIngestMetadataUpdate(ctx context.Context, d *schema.ResourceData, m
 		return diag.FromErr(err)
 	}
 
-	d.Set("metadata.0.name", ret.Metadata.Name)
-	d.Set("metadata.0.labels", ret.Metadata.Labels)
-	d.Set("spec.0", string(specBytes))
+	d.Set("metadata", []interface{}{
+		map[string]interface{}{
+			"name":   ret.Metadata.Name,
+			"labels": ret.Metadata.Labels,
+		},
+	})
+	d.Set("spec", string(specBytes))
 
 	return nil
 }

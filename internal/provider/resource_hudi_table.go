@@ -153,9 +153,12 @@ func resourceHudiTableCreate(ctx context.Context, d *schema.ResourceData, meta i
 		return diag.FromErr(err)
 	}
 
-	d.Set("metadata.0.name", ret.Metadata.Name)
-	d.Set("metadata.0.labels", ret.Metadata.Labels)
-
+	d.Set("metadata", []interface{}{
+		map[string]interface{}{
+			"name":   ret.Metadata.Name,
+			"labels": ret.Metadata.Labels,
+		},
+	})
 	spec = ret.Spec.(map[string]interface{})
 	schemaBytes, err := json.Marshal(spec["schema"])
 	if err != nil {
@@ -182,9 +185,12 @@ func resourceHudiTableRead(ctx context.Context, d *schema.ResourceData, meta int
 		return diag.FromErr(err)
 	}
 
-	d.Set("metadata.0.name", ret.Metadata.Name)
-	d.Set("metadata.0.labels", ret.Metadata.Labels)
-
+	d.Set("metadata", []interface{}{
+		map[string]interface{}{
+			"name":   ret.Metadata.Name,
+			"labels": ret.Metadata.Labels,
+		},
+	})
 	spec := ret.Spec.(map[string]interface{})
 	schemaBytes, err := json.Marshal(spec["schema"])
 	if err != nil {
@@ -225,8 +231,12 @@ func resourceHudiTableUpdate(ctx context.Context, d *schema.ResourceData, meta i
 		return diag.FromErr(err)
 	}
 
-	d.Set("metadata.0.name", ret.Metadata.Name)
-	d.Set("metadata.0.labels", ret.Metadata.Labels)
+	d.Set("metadata", []interface{}{
+		map[string]interface{}{
+			"name":   ret.Metadata.Name,
+			"labels": ret.Metadata.Labels,
+		},
+	})
 	spec = ret.Spec.(map[string]interface{})
 	schemaBytes, err := json.Marshal(spec["schema"])
 	if err != nil {

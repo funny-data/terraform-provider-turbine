@@ -229,14 +229,21 @@ func resourceHudiSinkJobCreate(ctx context.Context, d *schema.ResourceData, meta
 		return diag.FromErr(err)
 	}
 
-	d.Set("metadata.0.name", ret.Metadata.Name)
-	d.Set("metadata.0.labels", ret.Metadata.Labels)
-
+	d.Set("metadata", []interface{}{
+		map[string]interface{}{
+			"name":   ret.Metadata.Name,
+			"labels": ret.Metadata.Labels,
+		},
+	})
 	spec = ret.Spec.(map[string]interface{})
-	d.Set("spec.0.table.0", spec["table"])
-	d.Set("spec.0.source.0", spec["source"])
-	d.Set("spec.0.delta_streamer_task.0", spec["delta_streamer_task"])
-	d.Set("spec.0.sync_task.0", spec["sync_task"])
+	d.Set("spec", []interface{}{
+		map[string]interface{}{
+			"table":               []interface{}{spec["table"]},
+			"source":              []interface{}{spec["source"]},
+			"delta_streamer_task": []interface{}{spec["delta_streamer_task"]},
+			"sync_task":           []interface{}{spec["sync_task"]},
+		},
+	})
 
 	return nil
 }
@@ -256,14 +263,21 @@ func resourceHudiSinkJobRead(ctx context.Context, d *schema.ResourceData, meta i
 		return diag.FromErr(err)
 	}
 
-	d.Set("metadata.0.name", ret.Metadata.Name)
-	d.Set("metadata.0.labels", ret.Metadata.Labels)
-
+	d.Set("metadata", []interface{}{
+		map[string]interface{}{
+			"name":   ret.Metadata.Name,
+			"labels": ret.Metadata.Labels,
+		},
+	})
 	spec := ret.Spec.(map[string]interface{})
-	d.Set("spec.0.table.0", spec["table"])
-	d.Set("spec.0.source.0", spec["source"])
-	d.Set("spec.0.delta_streamer_task.0", spec["delta_streamer_task"])
-	d.Set("spec.0.sync_task.0", spec["sync_task"])
+	d.Set("spec", []interface{}{
+		map[string]interface{}{
+			"table":               []interface{}{spec["table"]},
+			"source":              []interface{}{spec["source"]},
+			"delta_streamer_task": []interface{}{spec["delta_streamer_task"]},
+			"sync_task":           []interface{}{spec["sync_task"]},
+		},
+	})
 
 	return nil
 }
@@ -299,14 +313,21 @@ func resourceHudiSinkJobUpdate(ctx context.Context, d *schema.ResourceData, meta
 		return diag.FromErr(err)
 	}
 
-	d.Set("metadata.0.name", ret.Metadata.Name)
-	d.Set("metadata.0.labels", ret.Metadata.Labels)
-
+	d.Set("metadata", []interface{}{
+		map[string]interface{}{
+			"name":   ret.Metadata.Name,
+			"labels": ret.Metadata.Labels,
+		},
+	})
 	spec = ret.Spec.(map[string]interface{})
-	d.Set("spec.0.table.0", spec["table"])
-	d.Set("spec.0.source.0", spec["source"])
-	d.Set("spec.0.delta_streamer_task.0", spec["delta_streamer_task"])
-	d.Set("spec.0.sync_task.0", spec["sync_task"])
+	d.Set("spec", []interface{}{
+		map[string]interface{}{
+			"table":               []interface{}{spec["table"]},
+			"source":              []interface{}{spec["source"]},
+			"delta_streamer_task": []interface{}{spec["delta_streamer_task"]},
+			"sync_task":           []interface{}{spec["sync_task"]},
+		},
+	})
 
 	return nil
 }

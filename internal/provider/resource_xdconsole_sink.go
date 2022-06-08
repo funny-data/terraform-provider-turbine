@@ -93,9 +93,13 @@ func resourceXDConsoleSinkCreate(ctx context.Context, d *schema.ResourceData, me
 		return diag.FromErr(err)
 	}
 
-	d.Set("metadata.0.name", ret.Metadata.Name)
-	d.Set("metadata.0.labels", ret.Metadata.Labels)
-	d.Set("spec.0", ret.Spec)
+	d.Set("metadata", []interface{}{
+		map[string]interface{}{
+			"name":   ret.Metadata.Name,
+			"labels": ret.Metadata.Labels,
+		},
+	})
+	d.Set("spec", []interface{}{ret.Spec})
 
 	return nil
 }
@@ -115,9 +119,13 @@ func resourceXDConsoleSinkRead(ctx context.Context, d *schema.ResourceData, meta
 		return diag.FromErr(err)
 	}
 
-	d.Set("metadata.0.name", ret.Metadata.Name)
-	d.Set("metadata.0.labels", ret.Metadata.Labels)
-	d.Set("spec.0", ret.Spec)
+	d.Set("metadata", []interface{}{
+		map[string]interface{}{
+			"name":   ret.Metadata.Name,
+			"labels": ret.Metadata.Labels,
+		},
+	})
+	d.Set("spec", []interface{}{ret.Spec})
 
 	return nil
 }
@@ -149,9 +157,13 @@ func resourceXDConsoleSinkUpdate(ctx context.Context, d *schema.ResourceData, me
 		return diag.FromErr(err)
 	}
 
-	d.Set("metadata.0.name", ret.Metadata.Name)
-	d.Set("metadata.0.labels", ret.Metadata.Labels)
-	d.Set("spec.0", ret.Spec)
+	d.Set("metadata", []interface{}{
+		map[string]interface{}{
+			"name":   ret.Metadata.Name,
+			"labels": ret.Metadata.Labels,
+		},
+	})
+	d.Set("spec", []interface{}{ret.Spec})
 
 	return nil
 }

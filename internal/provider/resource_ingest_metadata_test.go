@@ -8,8 +8,8 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 )
 
-const ingestMetadata1 = `{"name": "sausage_debug", "access_keys": [{"id": "rQJEk4mz66", "secret": "CcYyCc=="}], "messages": [{"type": "Event", "processors": [{"type": "DebugProcessor", "config": {"id": "99"}}]}]}`
-const ingestMetadata2 = `{"name": "sausage_debug", "access_keys": [{"id": "rQJEk4mz66", "secret": "CcYyCc=="}], "messages": [{"type": "Event", "processors": [{"type": "DebugProcessor", "config": {"id": "100"}}]}]}`
+const ingestMetadata1 = `{"name":"sausage_debug","access_keys":[{"id":"rQJEk4mz66","secret":"CcYyCc=="}],"messages":[{"type":"Event","processors":[{"type":"DebugProcessor","processors":null,"config":{"id":"99"}}]}]}`
+const ingestMetadata2 = `{"name":"sausage_debug","access_keys":[{"id":"rQJEk4mz66","secret":"CcYyCc=="}],"messages":[{"type":"Event","processors":[{"type":"DebugProcessor","processors":null,"config":{"id":"100"}}]}]}`
 
 func TestAccResourceIngestMetadata(t *testing.T) {
 	resource.UnitTest(t, resource.TestCase{
@@ -28,7 +28,7 @@ func TestAccResourceIngestMetadata(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr(
 						"turbine_ingest_metadata.foo", "metadata.0.name", "foo"),
-					resource.TestCheckResourceAttr(
+					CheckResourceAttrEqualToJson(
 						"turbine_ingest_metadata.foo", "spec", ingestMetadata1),
 				),
 			},
@@ -44,7 +44,7 @@ func TestAccResourceIngestMetadata(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr(
 						"turbine_ingest_metadata.foo", "metadata.0.name", "foo"),
-					resource.TestCheckResourceAttr(
+					CheckResourceAttrEqualToJson(
 						"turbine_ingest_metadata.foo", "spec", ingestMetadata2),
 				),
 			},
