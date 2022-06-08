@@ -43,16 +43,16 @@ func newApiClient(userAgent, endpoint, username, password string) *apiClient {
 }
 
 func (c *apiClient) Create(ctx context.Context, resource *Resource) (*Resource, error) {
-	ret := Resource{}
-	err := c.do(ctx, "POST", "v1/resources", resource, http.StatusCreated, &ret)
+	ret := &Resource{}
+	err := c.do(ctx, "POST", "v1/resources", resource, http.StatusCreated, ret)
 	if err != nil {
 		return nil, fmt.Errorf("create resource: %s", err)
 	}
-	err = c.waitStatus(ctx, &ret, "LIVE")
+	ret, err = c.waitStatus(ctx, ret, "LIVE")
 	if err != nil {
 		return nil, fmt.Errorf("wait resource become LIVE: %s", err)
 	}
-	return &ret, err
+	return ret, err
 }
 
 func (c *apiClient) Retrieve(ctx context.Context, kind string, name string) (*Resource, error) {
@@ -62,16 +62,16 @@ func (c *apiClient) Retrieve(ctx context.Context, kind string, name string) (*Re
 }
 
 func (c *apiClient) Update(ctx context.Context, resource *Resource) (*Resource, error) {
-	ret := Resource{}
-	err := c.do(ctx, "PUT", fmt.Sprintf("v1/resources/%s/%s", resource.Kind, resource.Metadata.Name), resource, http.StatusOK, &ret)
+	ret := &Resource{}
+	err := c.do(ctx, "PUT", fmt.Sprintf("v1/resources/%s/%s", resource.Kind, resource.Metadata.Name), resource, http.StatusOK, ret)
 	if err != nil {
 		return nil, fmt.Errorf("update resource: %s", err)
 	}
-	err = c.waitStatus(ctx, &ret, "LIVE")
+	ret, err = c.waitStatus(ctx, ret, "LIVE")
 	if err != nil {
 		return nil, fmt.Errorf("wait resource become LIVE: %s", err)
 	}
-	return &ret, err
+	return ret, err
 }
 
 func (c *apiClient) Destroy(ctx context.Context, kind string, name string) error {
@@ -101,7 +101,7 @@ func (c *apiClient) Destroy(ctx context.Context, kind string, name string) error
 	}
 }
 
-func (c *apiClient) waitStatus(ctx context.Context, resource *Resource, expectedStatus string) error {
+func (c *apiClient) waitStatus(ctx context.Context, resource *Resource, expectedStatus string) (*Resource, error) {
 	pollCtx, cancel := context.WithTimeout(ctx, c.pollTimeout)
 	defer cancel()
 	for {
@@ -110,15 +110,15 @@ func (c *apiClient) waitStatus(ctx context.Context, resource *Resource, expected
 		r, err := c.Retrieve(pollCtx, resource.Kind, resource.Metadata.Name)
 		if err != nil {
 			if err == context.DeadlineExceeded && pollCtx.Err() != nil && ctx.Err() == nil {
-				return fmt.Errorf("timeout while polling resource status: %s", err)
+				return nil, fmt.Errorf("timeout while polling resource status: %s", err)
 			}
-			return fmt.Errorf("poll resource statusp: %s", err)
+			return nil, fmt.Errorf("poll resource statusp: %s", err)
 		}
 		if r.Status.State == expectedStatus {
-			return nil
+			return r, nil
 		}
 		if r.Status.State == "FAILURE" {
-			return fmt.Errorf("resource failure with: %s", r.Status.Reason)
+			return nil, fmt.Errorf("resource failure with: %s", r.Status.Reason)
 		}
 	}
 }
@@ -199,8 +199,8 @@ type Resource struct {
 		Name   string            `json:"name"`
 		Labels map[string]string `json:"labels"`
 	} `json:"metadata"`
-	Kind   string                 `json:"kind"`
-	Spec   map[string]interface{} `json:"spec"`
+	Kind   string      `json:"kind"`
+	Spec   interface{} `json:"spec"`
 	Status struct {
 		State  string `json:"state"`
 		Reason string `json:"reason"`
