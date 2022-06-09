@@ -2,6 +2,7 @@ package provider
 
 import (
 	"context"
+	"errors"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -169,7 +170,7 @@ func resourceHudiDatabaseDelete(ctx context.Context, d *schema.ResourceData, met
 
 	err := client.Destroy(ctx, kind, name)
 	if err != nil {
-		if err == errResourceNotFound {
+		if errors.Is(err, errResourceNotFound) {
 			return nil
 		}
 		return diag.FromErr(err)

@@ -3,6 +3,7 @@ package provider
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"reflect"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
@@ -256,7 +257,7 @@ func resourceHudiTableDelete(ctx context.Context, d *schema.ResourceData, meta i
 
 	err := client.Destroy(ctx, kind, name)
 	if err != nil {
-		if err == errResourceNotFound {
+		if errors.Is(err, errResourceNotFound) {
 			return nil
 		}
 		return diag.FromErr(err)

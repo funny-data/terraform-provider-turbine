@@ -77,7 +77,7 @@ func (c *apiClient) Update(ctx context.Context, resource *Resource) (*Resource, 
 func (c *apiClient) Destroy(ctx context.Context, kind string, name string) error {
 	err := c.do(ctx, "DELETE", fmt.Sprintf("v1/resources/%s/%s", kind, name), nil, http.StatusAccepted, nil)
 	if err != nil {
-		return fmt.Errorf("delete resource: %s", err)
+		return fmt.Errorf("delete resource: %w", err)
 	}
 
 	pollCtx, cancel := context.WithTimeout(ctx, c.pollTimeout)
