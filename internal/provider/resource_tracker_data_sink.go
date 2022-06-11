@@ -23,6 +23,7 @@ func resourceTrackerDataSink() *schema.Resource {
 				MaxItems: 1,
 				MinItems: 1,
 				Required: true,
+				ForceNew: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"name": {
@@ -45,6 +46,7 @@ func resourceTrackerDataSink() *schema.Resource {
 				MaxItems: 1,
 				MinItems: 1,
 				Required: true,
+				ForceNew: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"topic": {
