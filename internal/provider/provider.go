@@ -55,6 +55,7 @@ func New(version string) func() *schema.Provider {
 				"turbine_xdconsole_sink":    resourceXDConsoleSink(),
 				"turbine_sls_sink":          resourceSLSSink(),
 				"turbine_tracker_data_sink": resourceTrackerDataSink(),
+				"turbine_template_table":    resourceTemplateTable(),
 			},
 		}
 
