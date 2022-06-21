@@ -56,6 +56,7 @@ func New(version string) func() *schema.Provider {
 				"turbine_sls_sink":          resourceSLSSink(),
 				"turbine_tracker_data_sink": resourceTrackerDataSink(),
 				"turbine_template_table":    resourceTemplateTable(),
+				"turbine_grafana_org":       resourceGrafanaOrg(),
 			},
 		}
 
