@@ -58,8 +58,6 @@ Optional:
 Required:
 
 - `name` (String)
-- `partitions` (Number)
-- `replication_factor` (Number)
 
 Optional:
 

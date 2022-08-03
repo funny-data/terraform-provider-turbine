@@ -53,15 +53,6 @@ func resourceKafkaTopic() *schema.Resource {
 							Required: true,
 							ForceNew: true,
 						},
-						"partitions": {
-							Type:     schema.TypeInt,
-							Required: true,
-						},
-						"replication_factor": {
-							Type:     schema.TypeInt,
-							Required: true,
-							ForceNew: true,
-						},
 						"config": {
 							Type:     schema.TypeMap,
 							Optional: true,
