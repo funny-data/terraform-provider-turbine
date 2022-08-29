@@ -56,6 +56,7 @@ Required:
 
 - `app` (String)
 - `event` (String)
+- `target` (String)
 - `topic` (String)
 
 

@@ -3,9 +3,7 @@ resource "turbine_kafka_topic" "foo" {
     name = "foo"
   }
   spec {
-    name               = "foo"
-    partitions         = 1
-    replication_factor = 2
+    name = "foo"
     config = {
       "retention.ms" : "86400000"
     }
