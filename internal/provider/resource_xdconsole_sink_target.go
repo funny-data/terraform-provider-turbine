@@ -48,19 +48,23 @@ func resourceXDConsoleSinkTarget() *schema.Resource {
 				Required: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
-						"topic": {
+						"endpoint": {
 							Type:     schema.TypeString,
 							Required: true,
 						},
-						"event": {
+						"project": {
 							Type:     schema.TypeString,
 							Required: true,
 						},
-						"app": {
+						"logstore": {
 							Type:     schema.TypeString,
 							Required: true,
 						},
-						"target": {
+						"access_key_id": {
+							Type:     schema.TypeString,
+							Required: true,
+						},
+						"access_key_secret": {
 							Type:     schema.TypeString,
 							Required: true,
 						},
