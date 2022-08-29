@@ -60,6 +60,10 @@ func resourceXDConsoleSink() *schema.Resource {
 							Type:     schema.TypeString,
 							Required: true,
 						},
+						"target": {
+							Type:     schema.TypeString,
+							Required: true,
+						},
 					},
 				},
 			},

@@ -21,6 +21,7 @@ func TestAccResourceXDConsoleSink(t *testing.T) {
 						topic = "foo"
 						event = "foo"
 						app = "foo"
+						target = "foo"
 					}
 				}
 				`,
@@ -33,6 +34,8 @@ func TestAccResourceXDConsoleSink(t *testing.T) {
 						"turbine_xdconsole_sink.foo", "spec.0.event", "foo"),
 					resource.TestCheckResourceAttr(
 						"turbine_xdconsole_sink.foo", "spec.0.app", "foo"),
+					resource.TestCheckResourceAttr(
+						"turbine_xdconsole_sink.foo", "spec.0.target", "foo"),
 				),
 			},
 			{
@@ -45,6 +48,7 @@ func TestAccResourceXDConsoleSink(t *testing.T) {
 						topic = "foo"
 						event = "foo"
 						app = "bar"
+						target = "foo"
 					}
 				}
 				`,
