@@ -43,20 +43,17 @@ Required:
 
 - `database` (String)
 - `name` (String)
+- `partition_spec` (Block List, Min: 1, Max: 1) (see [below for nested schema](#nestedblock--spec--partition_spec))
 - `schema` (String)
-
-Optional:
-
-- `partition_spec` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--partition_spec))
 
 <a id="nestedblock--spec--partition_spec"></a>
 ### Nested Schema for `spec.partition_spec`
 
 Required:
 
-- `fields` (Block List, Min: 1) (see [below for nested schema](#nestedblock--spec--partition_spec--fields))
+- `fields` (List of Object) (see [below for nested schema](#nestedatt--spec--partition_spec--fields))
 
-<a id="nestedblock--spec--partition_spec--fields"></a>
+<a id="nestedatt--spec--partition_spec--fields"></a>
 ### Nested Schema for `spec.partition_spec.fields`
 
 Required:
