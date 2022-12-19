@@ -137,13 +137,15 @@ func (c *apiClient) newRequest(ctx context.Context, method string, api string, b
 }
 
 func (c *apiClient) do(ctx context.Context, method, api string, args interface{}, expectedStatusCode int, returns interface{}) error {
-	var body io.Reader
+	var (
+		body io.Reader
+		buf  *bytes.Buffer = bytes.NewBuffer(nil)
+	)
 	if args != nil {
-		b := bytes.NewBuffer(nil)
-		if err := json.NewEncoder(b).Encode(&args); err != nil {
+		if err := json.NewEncoder(buf).Encode(&args); err != nil {
 			return err
 		}
-		body = b
+		body = buf
 	}
 
 	req, err := c.newRequest(ctx, method, api, body)
@@ -154,7 +156,7 @@ func (c *apiClient) do(ctx context.Context, method, api string, args interface{}
 	tflog.Debug(ctx, "sending api request", map[string]interface{}{
 		"method":          method,
 		"api":             api,
-		"args":            args,
+		"args":            buf.String(),
 		"expected_status": expectedStatusCode,
 	})
 
@@ -171,7 +173,7 @@ func (c *apiClient) do(ctx context.Context, method, api string, args interface{}
 	tflog.Debug(ctx, "received api response", map[string]interface{}{
 		"method":          method,
 		"api":             api,
-		"args":            args,
+		"args":            buf.String(),
 		"expected_status": expectedStatusCode,
 		"actual_status":   resp.StatusCode,
 	})
