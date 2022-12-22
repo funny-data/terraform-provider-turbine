@@ -62,6 +62,7 @@ func New(version string) func() *schema.Provider {
 				"turbine_template_table":        resourceTemplateTable(),
 				"turbine_grafana_org":           resourceGrafanaOrg(),
 				"turbine_grafana_datasource":    resourceGrafanaDataSource(),
+				"turbine_airflow_dag":           resourceAirflowDAG(),
 			},
 		}
 
