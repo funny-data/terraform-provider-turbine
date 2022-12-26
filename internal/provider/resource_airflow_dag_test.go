@@ -18,6 +18,7 @@ func TestAccResourceAirflowDAG(t *testing.T) {
 						name = "foo"
 					}
 					spec {
+						filename = "foo.py"
 						code = <<-EOF
 							print("hello world")
 						EOF
@@ -38,6 +39,7 @@ func TestAccResourceAirflowDAG(t *testing.T) {
 						name = "foo"
 					}
 					spec {
+						filename = "foo.py"
 						code = <<-EOF
 							print("hello Airflow")
 						EOF

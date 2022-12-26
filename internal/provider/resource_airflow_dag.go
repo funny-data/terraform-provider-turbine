@@ -48,6 +48,11 @@ func resourceAirflowDAG() *schema.Resource {
 				Required: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"filename": {
+							Type:     schema.TypeString,
+							Required: true,
+							ForceNew: true,
+						},
 						"code": {
 							Type:     schema.TypeString,
 							Required: true,
