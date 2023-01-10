@@ -18,6 +18,7 @@ func TestAccResourceIcebergSinkJob(t *testing.T) {
 						name = "foo"
 					}
 					spec {
+						enabled = true
 						table {
 							database = "demo"
 							table = "demo"
@@ -35,6 +36,8 @@ func TestAccResourceIcebergSinkJob(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr(
 						"turbine_iceberg_sink_job.foo", "metadata.0.name", "foo"),
+					resource.TestCheckResourceAttr(
+						"turbine_iceberg_sink_job.foo", "spec.0.enabled", "true"),
 					resource.TestCheckResourceAttr(
 						"turbine_iceberg_sink_job.foo", "spec.0.table.0.database", "demo"),
 					resource.TestCheckResourceAttr(
@@ -58,6 +61,7 @@ func TestAccResourceIcebergSinkJob(t *testing.T) {
 						name = "foo"
 					}
 					spec {
+						enabled = true
 						table {
 							database = "demo"
 							table = "demo"
@@ -75,6 +79,8 @@ func TestAccResourceIcebergSinkJob(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr(
 						"turbine_iceberg_sink_job.foo", "metadata.0.name", "foo"),
+					resource.TestCheckResourceAttr(
+						"turbine_iceberg_sink_job.foo", "spec.0.enabled", "true"),
 					resource.TestCheckResourceAttr(
 						"turbine_iceberg_sink_job.foo", "spec.0.table.0.database", "demo"),
 					resource.TestCheckResourceAttr(
