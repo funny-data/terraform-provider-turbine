@@ -108,6 +108,10 @@ func resourceIcebergSinkJob() *schema.Resource {
 							Type:     schema.TypeInt,
 							Required: true,
 						},
+						"event_time_field": {
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 					},
 				},
 			},
@@ -153,10 +157,11 @@ func resourceIcebergSinkJobCreate(ctx context.Context, d *schema.ResourceData, m
 	spec = ret.Spec.(map[string]interface{})
 	d.Set("spec", []interface{}{
 		map[string]interface{}{
-			"enabled":         spec["enabled"],
-			"table":           []interface{}{spec["table"]},
-			"source":          []interface{}{spec["source"]},
-			"target_interval": spec["target_interval"],
+			"enabled":          spec["enabled"],
+			"table":            []interface{}{spec["table"]},
+			"source":           []interface{}{spec["source"]},
+			"target_interval":  spec["target_interval"],
+			"event_time_field": spec["event_time_field"],
 		},
 	})
 
@@ -187,10 +192,11 @@ func resourceIcebergSinkJobRead(ctx context.Context, d *schema.ResourceData, met
 	spec := ret.Spec.(map[string]interface{})
 	d.Set("spec", []interface{}{
 		map[string]interface{}{
-			"enabled":         spec["enabled"],
-			"table":           []interface{}{spec["table"]},
-			"source":          []interface{}{spec["source"]},
-			"target_interval": spec["target_interval"],
+			"enabled":          spec["enabled"],
+			"table":            []interface{}{spec["table"]},
+			"source":           []interface{}{spec["source"]},
+			"target_interval":  spec["target_interval"],
+			"event_time_field": spec["event_time_field"],
 		},
 	})
 
@@ -235,10 +241,11 @@ func resourceIcebergSinkJobUpdate(ctx context.Context, d *schema.ResourceData, m
 	spec = ret.Spec.(map[string]interface{})
 	d.Set("spec", []interface{}{
 		map[string]interface{}{
-			"enabled":         spec["enabled"],
-			"table":           []interface{}{spec["table"]},
-			"source":          []interface{}{spec["source"]},
-			"target_interval": spec["target_interval"],
+			"enabled":          spec["enabled"],
+			"table":            []interface{}{spec["table"]},
+			"source":           []interface{}{spec["source"]},
+			"target_interval":  spec["target_interval"],
+			"event_time_field": spec["event_time_field"],
 		},
 	})
 

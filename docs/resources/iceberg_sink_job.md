@@ -41,9 +41,14 @@ Optional:
 
 Required:
 
+- `enabled` (Boolean)
 - `source` (Block List, Min: 1, Max: 1) (see [below for nested schema](#nestedblock--spec--source))
 - `table` (Block List, Min: 1, Max: 1) (see [below for nested schema](#nestedblock--spec--table))
 - `target_interval` (Number)
+
+Optional:
+
+- `event_time_field` (String)
 
 <a id="nestedblock--spec--source"></a>
 ### Nested Schema for `spec.source`
