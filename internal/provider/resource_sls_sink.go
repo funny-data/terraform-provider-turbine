@@ -17,6 +17,7 @@ func resourceSLSSink() *schema.Resource {
 		ReadContext:   resourceSLSSinkRead,
 		UpdateContext: resourceSLSSinkUpdate,
 		DeleteContext: resourceSLSSinkDelete,
+		Importer:      &schema.ResourceImporter{},
 
 		Schema: map[string]*schema.Schema{
 			"metadata": {

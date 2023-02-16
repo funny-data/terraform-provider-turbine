@@ -17,6 +17,7 @@ func resourceHudiSinkJob() *schema.Resource {
 		ReadContext:   resourceHudiSinkJobRead,
 		UpdateContext: resourceHudiSinkJobUpdate,
 		DeleteContext: resourceHudiSinkJobDelete,
+		Importer:      &schema.ResourceImporter{},
 
 		Schema: map[string]*schema.Schema{
 			"metadata": {

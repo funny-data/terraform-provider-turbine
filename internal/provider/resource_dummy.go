@@ -17,6 +17,7 @@ func resourceDummy() *schema.Resource {
 		ReadContext:   resourceDummyRead,
 		UpdateContext: resourceDummyUpdate,
 		DeleteContext: resourceDummyDelete,
+		Importer:      &schema.ResourceImporter{},
 
 		Schema: map[string]*schema.Schema{
 			"metadata": {

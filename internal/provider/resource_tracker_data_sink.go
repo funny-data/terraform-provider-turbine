@@ -16,6 +16,7 @@ func resourceTrackerDataSink() *schema.Resource {
 		CreateContext: resourceTrackerDataSinkCreate,
 		ReadContext:   resourceTrackerDataSinkRead,
 		DeleteContext: resourceTrackerDataSinkDelete,
+		Importer:      &schema.ResourceImporter{},
 
 		Schema: map[string]*schema.Schema{
 			"metadata": {

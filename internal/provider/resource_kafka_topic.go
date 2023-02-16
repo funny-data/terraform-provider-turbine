@@ -17,6 +17,7 @@ func resourceKafkaTopic() *schema.Resource {
 		ReadContext:   resourceKafkaTopicRead,
 		UpdateContext: resourceKafkaTopicUpdate,
 		DeleteContext: resourceKafkaTopicDelete,
+		Importer:      &schema.ResourceImporter{},
 
 		Schema: map[string]*schema.Schema{
 			"metadata": {

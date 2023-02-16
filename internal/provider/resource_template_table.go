@@ -19,6 +19,7 @@ func resourceTemplateTable() *schema.Resource {
 		ReadContext:   resourceTemplateTableRead,
 		UpdateContext: resourceTemplateTableUpdate,
 		DeleteContext: resourceTemplateTableDelete,
+		Importer:      &schema.ResourceImporter{},
 
 		Schema: map[string]*schema.Schema{
 			"metadata": {

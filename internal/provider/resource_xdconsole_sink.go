@@ -17,6 +17,7 @@ func resourceXDConsoleSink() *schema.Resource {
 		ReadContext:   resourceXDConsoleSinkRead,
 		UpdateContext: resourceXDConsoleSinkUpdate,
 		DeleteContext: resourceXDConsoleSinkDelete,
+		Importer:      &schema.ResourceImporter{},
 
 		Schema: map[string]*schema.Schema{
 			"metadata": {

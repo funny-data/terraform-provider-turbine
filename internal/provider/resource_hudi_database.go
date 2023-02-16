@@ -17,6 +17,7 @@ func resourceHudiDatabase() *schema.Resource {
 		ReadContext:   resourceHudiDatabaseRead,
 		UpdateContext: resourceHudiDatabaseUpdate,
 		DeleteContext: resourceHudiDatabaseDelete,
+		Importer:      &schema.ResourceImporter{},
 
 		Schema: map[string]*schema.Schema{
 			"metadata": {

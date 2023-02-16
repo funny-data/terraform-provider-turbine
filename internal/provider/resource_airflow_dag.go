@@ -17,6 +17,7 @@ func resourceAirflowDAG() *schema.Resource {
 		ReadContext:   resourceAirflowDAGRead,
 		UpdateContext: resourceAirflowDAGUpdate,
 		DeleteContext: resourceAirflowDAGDelete,
+		Importer:      &schema.ResourceImporter{},
 
 		Schema: map[string]*schema.Schema{
 			"metadata": {

@@ -17,6 +17,7 @@ func resourceIcebergDatabase() *schema.Resource {
 		ReadContext:   resourceIcebergDatabaseRead,
 		UpdateContext: resourceIcebergDatabaseUpdate,
 		DeleteContext: resourceIcebergDatabaseDelete,
+		Importer:      &schema.ResourceImporter{},
 
 		Schema: map[string]*schema.Schema{
 			"metadata": {

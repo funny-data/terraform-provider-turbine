@@ -17,6 +17,7 @@ func resourceIcebergSinkJob() *schema.Resource {
 		ReadContext:   resourceIcebergSinkJobRead,
 		UpdateContext: resourceIcebergSinkJobUpdate,
 		DeleteContext: resourceIcebergSinkJobDelete,
+		Importer:      &schema.ResourceImporter{},
 
 		Schema: map[string]*schema.Schema{
 			"metadata": {

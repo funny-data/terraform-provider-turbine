@@ -17,6 +17,7 @@ func resourceGrafanaDataSource() *schema.Resource {
 		ReadContext:   resourceGrafanaDataSourceRead,
 		UpdateContext: resourceGrafanaDataSourceUpdate,
 		DeleteContext: resourceGrafanaDataSourceDelete,
+		Importer:      &schema.ResourceImporter{},
 
 		Schema: map[string]*schema.Schema{
 			"metadata": {

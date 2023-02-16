@@ -19,6 +19,7 @@ func resourceIngestMetadata() *schema.Resource {
 		ReadContext:   resourceIngestMetadataRead,
 		UpdateContext: resourceIngestMetadataUpdate,
 		DeleteContext: resourceIngestMetadataDelete,
+		Importer:      &schema.ResourceImporter{},
 
 		Schema: map[string]*schema.Schema{
 			"metadata": {

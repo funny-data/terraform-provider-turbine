@@ -17,6 +17,7 @@ func resourceGrafanaOrg() *schema.Resource {
 		ReadContext:   resourceGrafanaOrgRead,
 		UpdateContext: resourceGrafanaOrgUpdate,
 		DeleteContext: resourceGrafanaOrgDelete,
+		Importer:      &schema.ResourceImporter{},
 
 		Schema: map[string]*schema.Schema{
 			"metadata": {
