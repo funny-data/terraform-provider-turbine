@@ -173,7 +173,7 @@ func resourceIcebergSinkJobRead(ctx context.Context, d *schema.ResourceData, met
 	client := meta.(*apiClient)
 
 	kind := "IcebergSinkJob"
-	name := d.Get("metadata.0.name").(string)
+	name := d.Id()
 
 	ret, err := client.Retrieve(ctx, kind, name)
 	if err != nil {

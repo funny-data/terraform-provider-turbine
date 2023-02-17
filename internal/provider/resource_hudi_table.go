@@ -176,7 +176,7 @@ func resourceHudiTableRead(ctx context.Context, d *schema.ResourceData, meta int
 	client := meta.(*apiClient)
 
 	kind := "HudiTable"
-	name := d.Get("metadata.0.name").(string)
+	name := d.Id()
 
 	ret, err := client.Retrieve(ctx, kind, name)
 	if err != nil {

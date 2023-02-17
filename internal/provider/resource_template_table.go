@@ -154,7 +154,7 @@ func resourceTemplateTableRead(ctx context.Context, d *schema.ResourceData, meta
 	client := meta.(*apiClient)
 
 	kind := "TemplateTable"
-	name := d.Get("metadata.0.name").(string)
+	name := d.Id()
 
 	ret, err := client.Retrieve(ctx, kind, name)
 	if err != nil {

@@ -103,7 +103,7 @@ func resourceGrafanaOrgRead(ctx context.Context, d *schema.ResourceData, meta in
 	client := meta.(*apiClient)
 
 	kind := "GrafanaOrg"
-	name := d.Get("metadata.0.name").(string)
+	name := d.Id()
 
 	ret, err := client.Retrieve(ctx, kind, name)
 	if err != nil {

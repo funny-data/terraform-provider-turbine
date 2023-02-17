@@ -118,7 +118,7 @@ func resourceXDConsoleSinkTargetRead(ctx context.Context, d *schema.ResourceData
 	client := meta.(*apiClient)
 
 	kind := "XDConsoleSinkTarget"
-	name := d.Get("metadata.0.name").(string)
+	name := d.Id()
 
 	ret, err := client.Retrieve(ctx, kind, name)
 	if err != nil {

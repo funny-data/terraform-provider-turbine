@@ -102,7 +102,7 @@ func resourceDummyRead(ctx context.Context, d *schema.ResourceData, meta interfa
 	client := meta.(*apiClient)
 
 	kind := "Dummy"
-	name := d.Get("metadata.0.name").(string)
+	name := d.Id()
 
 	ret, err := client.Retrieve(ctx, kind, name)
 	if err != nil {

@@ -134,7 +134,7 @@ func resourceSLSSinkRead(ctx context.Context, d *schema.ResourceData, meta inter
 	client := meta.(*apiClient)
 
 	kind := "SLSSink"
-	name := d.Get("metadata.0.name").(string)
+	name := d.Id()
 
 	ret, err := client.Retrieve(ctx, kind, name)
 	if err != nil {

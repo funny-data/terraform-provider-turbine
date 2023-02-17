@@ -103,7 +103,7 @@ func resourceIcebergDatabaseRead(ctx context.Context, d *schema.ResourceData, me
 	client := meta.(*apiClient)
 
 	kind := "IcebergDatabase"
-	name := d.Get("metadata.0.name").(string)
+	name := d.Id()
 
 	ret, err := client.Retrieve(ctx, kind, name)
 	if err != nil {

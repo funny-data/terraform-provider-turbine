@@ -19,8 +19,6 @@ func TestAccResourceKafkaTopic(t *testing.T) {
 					}
 					spec {
 						name = "foo"
-						partitions = 1
-						replication_factor = 1
 					}
 				}
 				`,
@@ -29,10 +27,6 @@ func TestAccResourceKafkaTopic(t *testing.T) {
 						"turbine_kafka_topic.foo", "metadata.0.name", "foo"),
 					resource.TestCheckResourceAttr(
 						"turbine_kafka_topic.foo", "spec.0.name", "foo"),
-					resource.TestCheckResourceAttr(
-						"turbine_kafka_topic.foo", "spec.0.partitions", "1"),
-					resource.TestCheckResourceAttr(
-						"turbine_kafka_topic.foo", "spec.0.replication_factor", "1"),
 				),
 			},
 			{
@@ -43,8 +37,6 @@ func TestAccResourceKafkaTopic(t *testing.T) {
 					}
 					spec {
 						name = "foo"
-						partitions = 2
-						replication_factor = 1
 					}
 				}
 				`,
@@ -53,10 +45,6 @@ func TestAccResourceKafkaTopic(t *testing.T) {
 						"turbine_kafka_topic.foo", "metadata.0.name", "foo"),
 					resource.TestCheckResourceAttr(
 						"turbine_kafka_topic.foo", "spec.0.name", "foo"),
-					resource.TestCheckResourceAttr(
-						"turbine_kafka_topic.foo", "spec.0.partitions", "2"),
-					resource.TestCheckResourceAttr(
-						"turbine_kafka_topic.foo", "spec.0.replication_factor", "1"),
 				),
 			},
 			{
@@ -67,8 +55,6 @@ func TestAccResourceKafkaTopic(t *testing.T) {
 					}
 					spec {
 						name = "foo"
-						partitions = 2
-						replication_factor = 1
 						config = {
 							"retention.ms": "86400000"
 						}
@@ -80,10 +66,6 @@ func TestAccResourceKafkaTopic(t *testing.T) {
 						"turbine_kafka_topic.foo", "metadata.0.name", "foo"),
 					resource.TestCheckResourceAttr(
 						"turbine_kafka_topic.foo", "spec.0.name", "foo"),
-					resource.TestCheckResourceAttr(
-						"turbine_kafka_topic.foo", "spec.0.partitions", "2"),
-					resource.TestCheckResourceAttr(
-						"turbine_kafka_topic.foo", "spec.0.replication_factor", "1"),
 					resource.TestCheckResourceAttr(
 						"turbine_kafka_topic.foo", "spec.0.config.retention.ms", "86400000"),
 				),

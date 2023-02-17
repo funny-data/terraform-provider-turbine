@@ -28,17 +28,17 @@ func TestAccResourceXDConsoleSinkTarget(t *testing.T) {
 				`,
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr(
-						"turbine_xdconsole_sink.foo", "metadata.0.name", "foo"),
+						"turbine_xdconsole_sink_target.foo", "metadata.0.name", "foo"),
 					resource.TestCheckResourceAttr(
-						"turbine_xdconsole_sink.foo", "spec.0.endpoint", "endpoint"),
+						"turbine_xdconsole_sink_target.foo", "spec.0.endpoint", "endpoint"),
 					resource.TestCheckResourceAttr(
-						"turbine_xdconsole_sink.foo", "spec.0.project", "project"),
+						"turbine_xdconsole_sink_target.foo", "spec.0.project", "project"),
 					resource.TestCheckResourceAttr(
-						"turbine_xdconsole_sink.foo", "spec.0.logstore", "logstore"),
+						"turbine_xdconsole_sink_target.foo", "spec.0.logstore", "logstore"),
 					resource.TestCheckResourceAttr(
-						"turbine_xdconsole_sink.foo", "spec.0.access_key_id", "access_key_id"),
+						"turbine_xdconsole_sink_target.foo", "spec.0.access_key_id", "access_key_id"),
 					resource.TestCheckResourceAttr(
-						"turbine_xdconsole_sink.foo", "spec.0.access_key_secret", "access_key_secret"),
+						"turbine_xdconsole_sink_target.foo", "spec.0.access_key_secret", "access_key_secret"),
 				),
 			},
 		},
